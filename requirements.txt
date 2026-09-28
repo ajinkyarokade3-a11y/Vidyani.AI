@@ -1,0 +1,16 @@
+# Core AI and agent framework dependencies for the initial environment.
+crewai
+crewai-tools
+google-genai
+
+# Backend runtime dependencies planned for the FastAPI service.
+fastapi
+uvicorn
+
+# Configuration, validation, database, and cache foundations.
+python-dotenv
+pydantic
+sqlalchemy
+psycopg2-binary
+redis
+requests

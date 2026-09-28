@@ -1,0 +1,29 @@
+# Python virtual environments and local secrets
+venv/
+.venv/
+.env
+
+# Python cache and test artifacts
+__pycache__/
+**/__pycache__/
+.pytest_cache/
+.coverage
+coverage/
+*.log
+
+# Editor and IDE settings
+.idea/
+.vscode/
+
+# Local assistant and skill metadata
+.agents/
+skills-lock.json
+
+# Frontend dependencies and build output
+node_modules/
+dist/
+build/
+
+# OS-generated files
+.DS_Store
+Thumbs.db

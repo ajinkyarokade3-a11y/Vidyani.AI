@@ -1,0 +1,36 @@
+
+> ai-learning-agent-frontend@0.1.0 dev
+> vite --host 127.0.0.1
+
+[2m11:21:51 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+
+  [32m[1mVITE[22m v8.1.5[39m  [2mready in [0m[1m297[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m5173[22m/[39m
+[2m11:37:15 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/components/layout/SidebarFooter.tsx[22m
+[2m11:37:16 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/components/dashboard/WelcomeCard.tsx[22m
+[2m11:37:16 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/components/dashboard/QuickStats.tsx[22m
+[2m11:37:17 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css[22m
+[2m11:43:21 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/components/layout/SidebarItem.tsx[22m
+[2m11:43:22 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/components/interview/InterviewSetup.tsx[22m
+[2m11:43:23 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/components/mentor/StarterPrompts.tsx[22m
+[2m11:43:23 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/components/mentor/MentorSuggestions.tsx[22m
+[2m11:43:24 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/components/quiz/QuizQuestionCard.tsx[22m
+[2m11:43:25 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css[22m
+[2m11:43:55 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css[22m
+[2m11:48:53 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/pages/LearningPlanPage.tsx[22m
+[2m11:48:54 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/components/learning-plan/PhaseTimeline.tsx[22m
+[2m11:48:55 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/layouts/AppLayout.tsx[22m
+[2m11:48:55 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css[22m
+[2m11:53:27 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/layouts/AppLayout.tsx[22m
+[2m11:53:28 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/pages/LearningPlanPage.tsx[22m
+[2m11:53:41 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/styles/globals.css, /src/pages/LearningPlanPage.tsx[22m
+[2m11:54:05 am[22m [36m[1m[vite][22m[39m [32m.env changed, restarting server...[39m
+[2m11:54:05 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+[2m11:58:13 am[22m [36m[1m[vite][22m[39m [32m.env changed, restarting server...[39m
+[2m11:58:13 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
+[2m11:58:13 am[22m [36m[1m[vite][22m[39m server restarted.
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m5173[22m/[39m
+[2m12:00:07 pm[22m [36m[1m[vite][22m[39m [32m.env changed, restarting server...[39m
+[2m12:00:07 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
