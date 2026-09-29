@@ -377,7 +377,7 @@ Make sure you have:
 ## 1. Clone the repository
 
 ```bash
-git clone https://github.com/Rishabh-Devadiga/Vidyani.AI.git
+git clone https://github.com/Ajinkya-Rokade/Vidyani.AI.git
 cd Vidyani.AI
 ```
 
@@ -643,12 +643,12 @@ The goal is to build an AI learning companion that continuously understands the 
 
 # 👨‍💻 Author
 
-**Rishabh Devadiga**
+**Ajinkya Rokade**
 
 Computer Science Engineering — AI & Data Science
 
 GitHub:
-https://github.com/Rishabh-Devadiga
+https://github.com/Ajinkya-Rokade
 
 ---
 
