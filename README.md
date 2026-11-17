@@ -278,6 +278,8 @@ Vidyani.AI/
 │   └── create-new-domain.md
 │
 ├── .env.example
+├── .vercelignore
+├── vercel.json
 ├── requirements.txt
 └── README.md
 ```
@@ -436,14 +438,17 @@ uvicorn backend.main:app --reload
 The backend will be available at:
 
 ```text
-http://127.0.0.1:8000
+http://127.0.0.1:8000/api
 ```
 
 FastAPI documentation:
 
 ```text
-http://127.0.0.1:8000/docs
+http://127.0.0.1:8000/api/docs
 ```
+
+All application routes are mounted under `/api`, matching the public path used
+by the Vercel deployment.
 
 ---
 
@@ -470,8 +475,12 @@ frontend/.env
 Example:
 
 ```env
-VITE_API_BASE_URL=http://127.0.0.1:8000
+VITE_API_BASE_URL=/api
 ```
+
+The frontend calls the API on the same origin. In development, the Vite dev
+server proxies `/api` to `http://127.0.0.1:8000/api`, so no separate backend URL
+or CORS configuration is needed.
 
 Start the development server:
 
@@ -513,68 +522,74 @@ npm run lint
 Once the backend is running:
 
 ```text
-http://127.0.0.1:8000/docs
+http://127.0.0.1:8000/api/docs
 ```
 
 ---
 
 # 🌐 Deployment
 
-Vidyani.AI can be deployed as two services.
+Vidyani.AI deploys as one Vercel project with two services defined in the root
+`vercel.json`:
+
+| Service    | Root        | Public path       | Framework |
+| ---------- | ----------- | ----------------- | --------- |
+| `backend`  | `.`         | `/api/*`          | FastAPI   |
+| `frontend` | `frontend/` | everything else   | Vite      |
 
 ```text
-                   Internet
-                       │
-            ┌──────────┴──────────┐
-            │                     │
-            ▼                     ▼
-       Vercel                  Railway
-       Frontend                Backend
-            │                     │
-            │ HTTPS               │
-            └──────────►──────────┤
-                                  │
-                                  ▼
-                              PostgreSQL
+Internet
+    │
+    ▼
+Vercel project (single domain)
+    ├── /api/*  ──► backend (FastAPI)  ──► PostgreSQL
+    └── /*      ──► frontend (Vite)
 ```
 
-### Frontend
+The backend is public at `/api/*` because the browser calls it directly. There
+are no internal service-to-service calls, so no service bindings are configured.
 
-Recommended deployment:
+### Vercel setup
 
-**Vercel**
+1. Import the repository into Vercel and keep the **Root Directory** at the
+   repository root.
+2. Set the project's **Framework Preset** to **Services**, or let the root
+   `vercel.json` define the services.
+3. Add the backend environment variables in **Project Settings → Environment
+   Variables** for Development, Preview, and Production:
+   `DATABASE_URL`, `GEMINI_API_KEY_1` through `GEMINI_API_KEY_4`,
+   `YOUTUBE_API_KEY_1` through `YOUTUBE_API_KEY_4`, `GOOGLE_CLIENT_ID`,
+   `GOOGLE_CLIENT_SECRET`, and `VITE_GOOGLE_CLIENT_ID`.
+4. Deploy. Vercel builds the frontend with `npm run build` from `frontend/` and
+   the backend from the root `requirements.txt` using the `backend.main:app`
+   entrypoint.
+5. Add the production and preview domains to the Google OAuth client's
+   authorized JavaScript origins so the calendar and Google Identity features
+   work on the new domain.
 
-Build command:
+The frontend uses the same-origin `/api` base URL, so no `VITE_API_BASE_URL`
+build variable is required.
+
+### Local verification with Vercel services
 
 ```bash
-npm run build
+npm install -g vercel
+vercel dev
 ```
 
-Output directory:
+`vercel dev` runs both services together and applies the same `/api` routing as
+production. The existing Vite dev server also works (`npm run dev`); it proxies
+`/api` to `http://127.0.0.1:8000`.
 
-```text
-dist
-```
+### Manual backend deployment
 
-Set the frontend environment variable:
-
-```env
-VITE_API_BASE_URL=https://your-railway-domain
-```
-
-### Backend
-
-Recommended deployment:
-
-**Railway**
-
-Start command:
+If you deploy the FastAPI service separately (for example on Railway), use:
 
 ```bash
 uvicorn backend.main:app --host 0.0.0.0 --port $PORT
 ```
 
-Configure backend environment variables in Railway rather than committing them to Git.
+The API is served under `/api` there as well.
 
 ---
 

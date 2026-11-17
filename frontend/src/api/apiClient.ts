@@ -2,11 +2,10 @@ import axios, { AxiosError } from "axios";
 
 import type { ApiErrorResponse } from "@/types/api";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
-if (!API_BASE_URL) {
-  throw new Error("VITE_API_BASE_URL is not configured.");
-}
+// The frontend and backend share one Vercel domain, so requests stay same-origin.
+// `/api` is rewritten to the FastAPI service by vercel.json in production and
+// proxied to the local backend by the Vite dev server.
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/api";
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,

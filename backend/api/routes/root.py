@@ -23,7 +23,7 @@ class RootData(BaseModel):
         examples=["AI Learning Agent API"],
     )
     version: str = Field(..., description="API version.", examples=["1.0.0"])
-    docs: str = Field(..., description="Swagger UI path.", examples=["/docs"])
+    docs: str = Field(..., description="Swagger UI path.", examples=["/api/docs"])
 
 
 @router.get(
@@ -43,7 +43,7 @@ class RootData(BaseModel):
                         "data": {
                             "service": "AI Learning Agent API",
                             "version": "1.0.0",
-                            "docs": "/docs",
+                            "docs": "/api/docs",
                         },
                     }
                 }
@@ -60,6 +60,6 @@ async def welcome() -> SuccessResponse[RootData]:
         data=RootData(
             service="AI Learning Agent API",
             version="1.0.0",
-            docs="/docs",
+            docs="/api/docs",
         ),
     )

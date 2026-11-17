@@ -81,38 +81,38 @@ def main() -> int:
     checks: dict[str, bool] = {}
 
     try:
-        print("Testing GET /...")
-        root_response = client.get("/")
+        print("Testing GET /api/...")
+        root_response = client.get("/api/")
         root_json = root_response.json()
-        checks["GET /"] = (
+        checks["GET /api/"] = (
             root_response.status_code == 200
             and _is_success_envelope(root_json)
-            and root_json["data"].get("docs") == "/docs"
+            and root_json["data"].get("docs") == "/api/docs"
         )
         _print_result(
-            "GET /",
-            checks["GET /"],
-            "" if checks["GET /"] else _request_failed(root_json),
+            "GET /api/",
+            checks["GET /api/"],
+            "" if checks["GET /api/"] else _request_failed(root_json),
         )
 
-        print("Testing GET /health...")
-        health_response = client.get("/health")
+        print("Testing GET /api/health...")
+        health_response = client.get("/api/health")
         health_json = health_response.json()
-        checks["GET /health"] = (
+        checks["GET /api/health"] = (
             health_response.status_code == 200
             and _is_success_envelope(health_json)
             and health_json["data"].get("status") == "healthy"
             and health_json["data"].get("database") == "connected"
         )
         _print_result(
-            "GET /health",
-            checks["GET /health"],
-            "" if checks["GET /health"] else _request_failed(health_json),
+            "GET /api/health",
+            checks["GET /api/health"],
+            "" if checks["GET /api/health"] else _request_failed(health_json),
         )
 
-        print("Testing POST /learning/session...")
+        print("Testing POST /api/learning/session...")
         session_response = client.post(
-            "/learning/session",
+            "/api/learning/session",
             json={
                 "user_name": "API Test User",
                 "email": email,
@@ -126,7 +126,7 @@ def main() -> int:
         workflow_data = (
             session_json.get("data", {}) if isinstance(session_json, dict) else {}
         )
-        checks["POST /learning/session"] = (
+        checks["POST /api/learning/session"] = (
             session_response.status_code == 201
             and _is_success_envelope(session_json)
             and workflow_data.get("workflow_completed") is True
@@ -143,9 +143,9 @@ def main() -> int:
             )
         )
         _print_result(
-            "POST /learning/session",
-            checks["POST /learning/session"],
-            "" if checks["POST /learning/session"] else _request_failed(session_json),
+            "POST /api/learning/session",
+            checks["POST /api/learning/session"],
+            "" if checks["POST /api/learning/session"] else _request_failed(session_json),
         )
 
         user = service.get_user(email=email)
@@ -154,12 +154,28 @@ def main() -> int:
         user_id = user.id
 
         endpoint_checks = [
-            ("GET /users/{user_id}", f"/users/{user_id}", dict),
-            ("GET /users/{user_id}/intent", f"/users/{user_id}/intent", dict),
-            ("GET /users/{user_id}/plan", f"/users/{user_id}/plan", dict),
-            ("GET /users/{user_id}/progress", f"/users/{user_id}/progress", list),
-            ("GET /users/{user_id}/feedback", f"/users/{user_id}/feedback", list),
-            ("GET /users/{user_id}/nudges", f"/users/{user_id}/nudges", list),
+            ("GET /api/users/{user_id}", f"/api/users/{user_id}", dict),
+            (
+                "GET /api/users/{user_id}/intent",
+                f"/api/users/{user_id}/intent",
+                dict,
+            ),
+            ("GET /api/users/{user_id}/plan", f"/api/users/{user_id}/plan", dict),
+            (
+                "GET /api/users/{user_id}/progress",
+                f"/api/users/{user_id}/progress",
+                list,
+            ),
+            (
+                "GET /api/users/{user_id}/feedback",
+                f"/api/users/{user_id}/feedback",
+                list,
+            ),
+            (
+                "GET /api/users/{user_id}/nudges",
+                f"/api/users/{user_id}/nudges",
+                list,
+            ),
         ]
 
         for label, path, expected_type in endpoint_checks:
@@ -182,9 +198,9 @@ def main() -> int:
 
         error_checks = [
             (
-                "POST /learning/session invalid email",
+                "POST /api/learning/session invalid email",
                 client.post(
-                    "/learning/session",
+                    "/api/learning/session",
                     json={
                         "user_name": "API Test User",
                         "email": "not-an-email",
@@ -194,9 +210,9 @@ def main() -> int:
                 422,
             ),
             (
-                "POST /learning/session empty prompt",
+                "POST /api/learning/session empty prompt",
                 client.post(
-                    "/learning/session",
+                    "/api/learning/session",
                     json={
                         "user_name": "API Test User",
                         "email": email,
@@ -205,8 +221,8 @@ def main() -> int:
                 ),
                 422,
             ),
-            ("GET /users/0", client.get("/users/0"), 422),
-            ("GET /users/999999999", client.get("/users/999999999"), 404),
+            ("GET /api/users/0", client.get("/api/users/0"), 422),
+            ("GET /api/users/999999999", client.get("/api/users/999999999"), 404),
         ]
 
         for label, response, expected_status in error_checks:

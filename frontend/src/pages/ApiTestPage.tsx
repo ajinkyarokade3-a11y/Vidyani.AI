@@ -118,14 +118,14 @@ export function ApiTestPage() {
             disabled={isLoading}
             label="Get API Root"
             onClick={() => {
-              void runQueryRequest("GET /", () => rootQuery.refetch());
+              void runQueryRequest("GET /api/", () => rootQuery.refetch());
             }}
           />
           <ApiButton
             disabled={isLoading}
             label="Get Health"
             onClick={() => {
-              void runQueryRequest("GET /health", () => healthQuery.refetch());
+              void runQueryRequest("GET /api/health", () => healthQuery.refetch());
             }}
           />
         </div>
@@ -162,7 +162,7 @@ export function ApiTestPage() {
           className="w-fit rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:bg-slate-400"
           disabled={isLoading || !userName.trim() || !prompt.trim()}
           onClick={() =>
-            runRequest("POST /learning/session", () =>
+            runRequest("POST /api/learning/session", () =>
               learningSessionMutation.mutateAsync({
                 user_name: userName,
                 email: email.trim() || null,
@@ -194,7 +194,7 @@ export function ApiTestPage() {
             label="Get User"
             onClick={() => {
               if (requireUserId()) {
-                void runQueryRequest("GET /users/{id}", () => userQuery.refetch());
+                void runQueryRequest("GET /api/users/{id}", () => userQuery.refetch());
               }
             }}
           />
@@ -203,7 +203,7 @@ export function ApiTestPage() {
             label="Get Intent"
             onClick={() => {
               if (requireUserId()) {
-                void runQueryRequest("GET /users/{id}/intent", () =>
+                void runQueryRequest("GET /api/users/{id}/intent", () =>
                   intentQuery.refetch()
                 );
               }
@@ -214,7 +214,7 @@ export function ApiTestPage() {
             label="Get Plan"
             onClick={() => {
               if (requireUserId()) {
-                void runQueryRequest("GET /users/{id}/plan", () =>
+                void runQueryRequest("GET /api/users/{id}/plan", () =>
                   planQuery.refetch()
                 );
               }
@@ -225,7 +225,7 @@ export function ApiTestPage() {
             label="Get Progress"
             onClick={() => {
               if (requireUserId()) {
-                void runQueryRequest("GET /users/{id}/progress", () =>
+                void runQueryRequest("GET /api/users/{id}/progress", () =>
                   progressQuery.refetch()
                 );
               }
@@ -236,7 +236,7 @@ export function ApiTestPage() {
             label="Get Feedback"
             onClick={() => {
               if (requireUserId()) {
-                void runQueryRequest("GET /users/{id}/feedback", () =>
+                void runQueryRequest("GET /api/users/{id}/feedback", () =>
                   feedbackQuery.refetch()
                 );
               }
@@ -247,7 +247,7 @@ export function ApiTestPage() {
             label="Get Nudges"
             onClick={() => {
               if (requireUserId()) {
-                void runQueryRequest("GET /users/{id}/nudges", () =>
+                void runQueryRequest("GET /api/users/{id}/nudges", () =>
                   nudgesQuery.refetch()
                 );
               }

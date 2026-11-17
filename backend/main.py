@@ -25,10 +25,17 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
+# Public API prefix. Vercel routes /api/* to this service, so the FastAPI routes
+# must live under the same prefix when the backend is reached directly.
+API_PREFIX = "/api"
+
 app = FastAPI(
     title="AI-Learning-Agent API",
     description="Backend foundation for the AI-powered personal learning agent.",
     version="0.1.0",
+    docs_url=f"{API_PREFIX}/docs",
+    redoc_url=f"{API_PREFIX}/redoc",
+    openapi_url=f"{API_PREFIX}/openapi.json",
 )
 
 app.add_middleware(
@@ -46,7 +53,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(api_router)
+app.include_router(api_router, prefix=API_PREFIX)
 
 
 @app.middleware("http")
