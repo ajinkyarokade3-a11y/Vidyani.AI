@@ -1,0 +1,19 @@
+# Each service installs its own dependencies and produces its own build output.
+frontend/node_modules
+frontend/dist
+
+# Local Python environments, caches, and logs are not needed to build either service.
+.venv
+venv
+**/__pycache__
+*.pyc
+logs
+.vite
+
+# Never upload local secrets. Configure these in the Vercel project instead.
+.env
+.env.local
+.env.*.local
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
